@@ -2,10 +2,8 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import BusinessCart from '../components/BusinessCart';
 import Industries from '../components/Industries';
+import home from '../assets/home.png'
 
-/* ------------------------------------------------------------------ */
-/*  Icons (inline SVG — crisper + more premium than emoji)             */
-/* ------------------------------------------------------------------ */
 const Icon = {
   Bolt: (p) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"
@@ -46,9 +44,7 @@ const Icon = {
   ),
 };
 
-/* ------------------------------------------------------------------ */
-/*  Data                                                               */
-/* ------------------------------------------------------------------ */
+
 const PILLS = ['AI-Powered', 'Smart Automation', 'Ship Weekly'];
 
 const PIPELINE = [
@@ -86,8 +82,6 @@ const BUSINESS_CART_ITEMS = [
   },
 ];
 
-/* ------------------------------------------------------------------ */
-
 const HomePage = () => {
   const reduce = useReducedMotion();
 
@@ -118,10 +112,8 @@ const HomePage = () => {
         };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#fcfcfd] font-sans antialiased">
-      {/* ---------------- Background ---------------- */}
+    <div className="relative overflow-hidden bg-[#fcfcfd] font-sans antialiased">
       <div className="pointer-events-none absolute inset-0">
-        {/* aurora blobs */}
         <motion.div
           className="absolute -top-40 -right-32 h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle_at_center,#ff3b00_0%,transparent_65%)] opacity-[0.18] blur-3xl"
           animate={reduce ? {} : { scale: [1, 1.12, 1], x: [0, -30, 0] }}
@@ -132,28 +124,23 @@ const HomePage = () => {
           animate={reduce ? {} : { scale: [1, 1.18, 1], y: [0, -24, 0] }}
           transition={{ duration: 19, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
         />
-        {/* grid, masked to fade out */}
         <div
           className="absolute inset-0 opacity-[0.55]
             [background-image:linear-gradient(to_right,#0f172a0d_1px,transparent_1px),linear-gradient(to_bottom,#0f172a0d_1px,transparent_1px)]
             [background-size:56px_56px]
             [mask-image:radial-gradient(ellipse_75%_60%_at_50%_40%,#000_35%,transparent_100%)]"
         />
-        {/* fine noise / vignette */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_-10%,#ffffff_0%,transparent_55%)]" />
       </div>
 
-      {/* ---------------- Content ---------------- */}
-      <section className="relative z-10 mx-auto flex min-h-screen w-full max-w-7xl flex-col justify-center px-5 py-20 sm:px-8 lg:px-12">
+      <section className="relative z-10 mx-auto w-full max-w-7xl px-5 py-2 sm:px-8 lg:px-12">
         <motion.div
           className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10"
           variants={container}
           initial="hidden"
           animate="visible"
         >
-          {/* ============ LEFT ============ */}
-          <div>
-            {/* Badge */}
+          <div className="max-w-xl">
             <motion.div variants={item}>
               <div className="group inline-flex items-center gap-2.5 rounded-full border border-slate-900/[0.07] bg-white/80 py-1.5 pl-1.5 pr-4 shadow-[0_1px_2px_rgba(16,24,40,.06),0_8px_24px_-12px_rgba(255,59,0,.35)] backdrop-blur-xl">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-[#ff3b00] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-white">
@@ -170,7 +157,6 @@ const HomePage = () => {
               </div>
             </motion.div>
 
-            {/* Heading */}
             <motion.h1
               variants={item}
               className="mt-7 text-[2.6rem] font-semibold leading-[1.04] tracking-[-0.035em] text-slate-900 sm:text-6xl lg:text-[4.25rem]"
@@ -178,11 +164,10 @@ const HomePage = () => {
               Transforming ideas
               <br />
               into{' '}
-              <span className="relative inline-block">
+                <span className="relative inline-block">
                 <span className="bg-gradient-to-r from-[#ff3b00] via-[#ff6a2b] to-[#ffa14a] bg-clip-text text-transparent">
                   digital reality
                 </span>
-                {/* hand-drawn underline */}
                 <svg
                   className="absolute -bottom-2 left-0 h-3 w-full text-[#ff3b00]/35"
                   viewBox="0 0 300 12"
@@ -203,7 +188,6 @@ const HomePage = () => {
               <span className="text-[#ff3b00]">.</span>
             </motion.h1>
 
-            {/* Sub */}
             <motion.p
               variants={item}
               className="mt-8 max-w-xl text-[15px] leading-relaxed text-slate-600 sm:text-base"
@@ -216,7 +200,6 @@ const HomePage = () => {
               more efficiently.
             </motion.p>
 
-            {/* Checklist */}
             <motion.ul variants={item} className="mt-6 flex flex-wrap gap-x-6 gap-y-2.5">
               {['Fixed weekly sprints', 'Senior-only team', 'Ship in 8 weeks'].map((t) => (
                 <li key={t} className="flex items-center gap-2 text-[13px] font-medium text-slate-700">
@@ -228,7 +211,6 @@ const HomePage = () => {
               ))}
             </motion.ul>
 
-            {/* CTAs */}
             <motion.div variants={item} className="mt-9 flex flex-wrap items-center gap-3">
               <motion.button
                 whileHover={{ y: -2 }}
@@ -252,7 +234,6 @@ const HomePage = () => {
               </motion.button>
             </motion.div>
 
-            {/* Social proof + stats */}
             <motion.div
               variants={item}
               className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5"
@@ -288,126 +269,24 @@ const HomePage = () => {
             </motion.div>
           </div>
 
-          {/* ============ RIGHT ============ */}
-          <motion.div variants={item} className="relative flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[26rem]">
-              {/* glow behind card */}
-              <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-[#ff3b00]/20 via-orange-300/10 to-transparent blur-2xl" />
-
-              {/* gradient border wrapper */}
-              <motion.div
-                {...float(7, 10)}
-                className="relative rounded-[1.75rem] bg-gradient-to-b from-white/90 to-white/40 p-px shadow-[0_30px_80px_-30px_rgba(15,23,42,.35)]"
-              >
-                <div className="relative overflow-hidden rounded-[1.7rem] bg-white/70 p-6 backdrop-blur-2xl">
-                  {/* card header */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="relative flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff3b00] to-[#ff8a3d] text-white shadow-lg shadow-[#ff3b00]/30">
-                        <Icon.Cpu className="h-5 w-5" />
-                        <motion.span
-                          className="absolute inset-0 rounded-2xl ring-2 ring-[#ff3b00]/40"
-                          animate={reduce ? {} : { scale: [1, 1.35], opacity: [0.6, 0] }}
-                          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeOut' }}
-                        />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-slate-900">Zoraz AI</p>
-                        <p className="text-[11px] text-slate-500">Sprint co-pilot</p>
-                      </div>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-emerald-600 ring-1 ring-emerald-500/15">
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
-                      Live
-                    </span>
-                  </div>
-
-                  {/* pipeline */}
-                  <div className="mt-6 space-y-4">
-                    {PIPELINE.map((row, i) => (
-                      <div key={row.label}>
-                        <div className="mb-1.5 flex items-center justify-between text-[11.5px]">
-                          <span className="font-medium text-slate-700">{row.label}</span>
-                          <span className={row.done ? 'font-semibold text-emerald-600' : 'text-slate-400'}>
-                            {row.done ? 'Done' : `${row.value}%`}
-                          </span>
-                        </div>
-                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-900/[0.06]">
-                          <motion.div
-                            className={`h-full rounded-full ${
-                              row.done
-                                ? 'bg-emerald-500'
-                                : 'bg-gradient-to-r from-[#ff3b00] to-[#ff9a4d]'
-                            }`}
-                            initial={{ width: 0 }}
-                            animate={{ width: `${row.value}%` }}
-                            transition={{ delay: 0.8 + i * 0.18, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* divider */}
-                  <div className="my-6 flex items-center gap-3">
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-900/10 to-transparent" />
-                    <span className="text-[9.5px] font-semibold uppercase tracking-[0.22em] text-slate-400">
-                      Innovation
-                    </span>
-                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-slate-900/10 to-transparent" />
-                  </div>
-
-                  {/* pills */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {PILLS.map((p) => (
-                      <span
-                        key={p}
-                        className="rounded-full border border-[#ff3b00]/15 bg-[#ff3b00]/[0.06] px-2.5 py-1 text-[10.5px] font-medium text-[#d63200]"
-                      >
-                        {p}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* mini stats */}
-                  <div className="mt-5 grid grid-cols-2 gap-2.5">
-                    <MiniStat value="8" label="Sprints in 8 weeks" />
-                    <MiniStat value="4.2x" label="Faster delivery" accent />
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* floating chips */}
-              <motion.div
-                {...float(5, 14)}
-                className="absolute -left-5 top-16 hidden items-center gap-2 rounded-2xl border border-white/70 bg-white/80 px-3 py-2 shadow-xl shadow-slate-900/5 backdrop-blur-xl sm:flex"
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-[#ff3b00]/10 text-[#ff3b00]">
-                  <Icon.Bolt className="h-3.5 w-3.5" />
-                </span>
-                <div className="leading-tight">
-                  <p className="text-[11px] font-semibold text-slate-900">Deploy passed</p>
-                  <p className="text-[9.5px] text-slate-500">2m ago · main</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                {...float(6, 12, 0.8)}
-                className="absolute -right-4 bottom-14 hidden items-center gap-2 rounded-2xl border border-white/70 bg-white/80 px-3 py-2 shadow-xl shadow-slate-900/5 backdrop-blur-xl sm:flex"
-              >
-                <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600">
-                  <Icon.Check className="h-3.5 w-3.5" />
-                </span>
-                <div className="leading-tight">
-                  <p className="text-[11px] font-semibold text-slate-900">QA automated</p>
-                  <p className="text-[9.5px] text-slate-500">128 checks</p>
-                </div>
-              </motion.div>
-            </div>
+          <motion.div variants={item} className="hidden lg:flex justify-cente lg:justify-end">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, ease: 'easeOut' }}
+              className="w-full max-w-[28rem]"
+            >
+              <div className="overflow-hidden ">
+                <img
+                  src={home}
+                  alt="Hourglass with blue sand"
+                  className="w-full h-auto object-contain -mt-3 "
+                />
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* ---------------- Logo strip ---------------- */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -461,8 +340,6 @@ const HomePage = () => {
 };
 
 
-
-/* ------------------------------------------------------------------ */
 const Stat = ({ icon, value, label }) => (
   <div className="flex items-center gap-2.5">
     <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-[#ff3b00]/15 bg-[#ff3b00]/[0.07] text-[#ff3b00]">
