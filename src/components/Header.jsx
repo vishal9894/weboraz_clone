@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 
 
@@ -7,87 +8,107 @@ const BRAND = '#ff3b00';
 const BRAND_2 = '#ff8a3d';
 
 const NAV = [
-  { id: 'home', label: 'Home', href: '#' },
+  { id: 'home', label: 'Home', href: '/' },
   {
     id: 'services',
     label: 'Services',
+    href: '/services',
     mega: true,
     width: 'w-[46rem]',
     columns: [
       {
         title: 'Web Development',
         items: [
-          'Custom Website Development',
-          'E-Commerce Development',
-          'WordPress Development',
-          'Web Application Development',
-          'Website Redesign',
-          'Website Maintenance',
+          {
+            name: 'Custom Website Development',
+            href: '/services/custom-website-development',
+          },
+          {
+            name: 'E-Commerce Development',
+            href: '/services/e-commerce-development',
+          },
+          {
+            name: 'WordPress Development',
+            href: '/services/wordpress-development',
+          },
+          {
+            name: 'Web Application Development',
+            href: '/services/web-application-development',
+          },
+          {
+            name: 'Website Redesign',
+            href: '/services/website-redesign',
+          },
+          {
+            name: 'Website Maintenance',
+            href: '/services/website-maintenance',
+          },
         ],
       },
       {
         title: 'Mobile App Development',
         items: [
-          'Android App Development',
-          'iOS App Development',
-          'Enterprise Mobile Applications',
-          'E-Commerce Mobile Solutions',
-          'Business Process Automation Apps',
-          'App UI/UX Design',
+          { name: 'Android App Development', href: '/services/android-app-development' },
+          { name: 'iOS App Development', href: '/services/ios-app-development' },
+          { name: 'Enterprise Mobile Applications', href: '/services/enterprise-mobile-applications' },
+          { name: 'E-Commerce Mobile Solutions', href: '/services/e-commerce-mobile-solutions' },
+          { name: 'Business Process Automation Apps', href: '/services/business-process-automation-apps' },
+          { name: 'App UI/UX Design', href: '/services/app-ui-ux-design' },
         ],
       },
       {
         title: 'Software & Enterprise',
         items: [
-          'Software Development',
-          'Custom Software Development',
-          'CRM Development',
-          'ERP Solutions',
-          'SaaS Product Development',
-          'API Integration',
+          { name: 'Software Development', href: '/services/software-development' },
+          { name: 'Custom Software Development', href: '/services/custom-software-development' },
+          { name: 'CRM Development', href: '/services/crm-development' },
+          { name: 'ERP Solutions', href: '/services/erp-solutions' },
+          { name: 'SaaS Product Development', href: '/services/saas-product-development' },
+          { name: 'API Integration', href: '/services/api-integration' },
         ],
       },
       {
         title: 'Creative Experience',
         items: [
-          'UI/UX Designing',
-          'Product Design',
-          'Graphics Designing',
-          'Logo Designing',
-          'Brand Identity',
-          'Motion & Video Design',
+          { name: 'UI/UX Designing', href: '/services/ui-ux-designing' },
+          { name: 'Product Design', href: '/services/product-design' },
+          { name: 'Graphics Designing', href: '/services/graphics-designing' },
+          { name: 'Logo Designing', href: '/services/logo-designing' },
+          { name: 'Brand Identity', href: '/services/brand-identity' },
+          { name: 'Motion & Video Design', href: '/services/motion-video-design' },
         ],
       },
     ],
     footer: {
       title: 'SEO & Performance Marketing',
       items: [
-        'Technical SEO',
-        'Local SEO',
-        'Enterprise SEO',
-        'Google Ads',
-        'FB & IG Ads',
-        'YouTube Ads',
-        'WhatsApp Ads',
-        'Lead Generation',
+        { name: 'Technical SEO', href: '/services/technical-seo' },
+        { name: 'Local SEO', href: '/services/local-seo' },
+        { name: 'Enterprise SEO', href: '/services/enterprise-seo' },
+        { name: 'Google Ads', href: '/services/google-ads' },
+        { name: 'FB & IG Ads', href: '/services/fb-ig-ads' },
+        { name: 'YouTube Ads', href: '/services/youtube-ads' },
+        { name: 'WhatsApp Ads', href: '/services/whatsapp-ads' },
+        { name: 'Lead Generation', href: '/services/lead-generation' },
       ],
     },
   },
   {
     id: 'ai',
     label: 'AI Automation',
+    href: '/ai',
     badge: 'New',
     width: 'w-[21rem]',
     columns: [
       {
         title: 'AI Solutions',
         items: [
-          'AI Consulting',
-          'AI Chatbots',
-          'AI Agent Development',
-          'AI + GPT Integration',
-          'Workflow Automation',
-          'Business Process Automation',
+          { name: 'AI Consulting', href: '/ai/consulting' },
+          { name: 'AI Chatbots', href: '/ai/chatbots' },
+          { name: 'AI Agent Development', href: '/ai/agent-development' },
+          { name: 'AI + GPT Integration', href: '/ai/gpt-integration' },
+          { name: 'Workflow Automation', href: '/ai/workflow-automation' },
+          { name: 'Business Process Automation', href: '/ai/business-process-automation' },
         ],
       },
     ],
@@ -99,27 +120,28 @@ const NAV = [
   {
     id: 'industries',
     label: 'Industries',
+    href: '/industries',
     width: 'w-[22rem]',
     columns: [
       {
         title: 'Industry Solutions',
         items: [
-          { name: 'Healthcare', desc: 'Patient Leads' },
-          { name: 'E-Commerce', desc: 'Revenue Growth' },
-          { name: 'Real Estate', desc: 'Qualified Leads' },
-          { name: 'Education', desc: 'Enrollment Growth' },
-          { name: 'FinTech', desc: 'Faster Acquisition' },
-          { name: 'Startups & SaaS', desc: 'Delivery Velocity' },
-          { name: 'Professional Services', desc: 'Global Markets' },
-          { name: 'Retail & Ecommerce', desc: 'Other Industries' },
+          { name: 'Healthcare', href: '/industries/healthcare', desc: 'Patient Leads' },
+          { name: 'E-Commerce', href: '/industries/e-commerce', desc: 'Revenue Growth' },
+          { name: 'Real Estate', href: '/industries/real-estate', desc: 'Qualified Leads' },
+          { name: 'Education', href: '/industries/education', desc: 'Enrollment Growth' },
+          { name: 'FinTech', href: '/industries/fintech', desc: 'Faster Acquisition' },
+          { name: 'Startups & SaaS', href: '/industries/startups-saas', desc: 'Delivery Velocity' },
+          { name: 'Professional Services', href: '/industries/professional-services', desc: 'Global Markets' },
+          { name: 'Retail & Ecommerce', href: '/industries/retail-ecommerce', desc: 'Other Industries' },
         ],
       },
     ],
     cta: { label: 'View All Industries' },
   },
-  { id: 'about', label: 'About', href: '#' },
-  { id: 'insights', label: 'Insights', href: '#' },
-  { id: 'contact', label: 'Contact', href: '#' },
+  { id: 'about', label: 'About', href: '/about' },
+  { id: 'insights', label: 'Insights', href: '/insights' },
+  { id: 'contact', label: 'Contact', href: '/contact' },
 ];
 
 const Chevron = ({ className }) => (
@@ -236,7 +258,7 @@ const Header = () => {
             }`}
           >
            
-            <a href="#" className="group flex items-center gap-3">
+            <Link to="/" className="group flex items-center gap-3">
               <motion.div
                 whileHover={{ rotate: -6, scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 400, damping: 15 }}
@@ -258,21 +280,12 @@ const Header = () => {
                   Digital Solutions
                 </p>
               </div>
-            </a>
+            </Link>
 
            
             <nav className="hidden items-center gap-1 lg:flex">
               {NAV.map((n) =>
-                n.href ? (
-                  <a
-                    key={n.id}
-                    href={n.href}
-                    className="relative rounded-lg px-3.5 py-2 text-[13.5px] font-medium text-slate-600 transition-colors hover:text-slate-900"
-                  >
-                    <span className="relative z-10">{n.label}</span>
-                    <span className="absolute inset-0 scale-90 rounded-lg bg-slate-900/[0.04] opacity-0 transition-all duration-200 hover:scale-100 hover:opacity-100" />
-                  </a>
-                ) : (
+                n.columns?.length ? (
                   <div
                     key={n.id}
                     className="relative"
@@ -349,6 +362,7 @@ const Header = () => {
                                   {col.items.map((it, i) => {
                                     const name = typeof it === 'string' ? it : it.name;
                                     const desc = typeof it === 'string' ? null : it.desc;
+                                    const itemHref = typeof it === 'string' ? null : it.href;
                                     return (
                                       <motion.li
                                         key={name}
@@ -357,21 +371,39 @@ const Header = () => {
                                         initial="hidden"
                                         animate="visible"
                                       >
-                                        <a
-                                          href="#"
-                                          className="group flex items-center justify-between gap-3 rounded-lg px-2.5 py-1.5 text-[13px] text-slate-600 transition-colors hover:bg-slate-900/[0.035] hover:text-slate-900"
-                                        >
-                                          <span className="flex items-center gap-2.5">
-                                            <span
-                                              className="h-1 w-1 rounded-full transition-all duration-200 group-hover:h-1.5 group-hover:w-1.5"
-                                              style={{ background: BRAND, opacity: 0.35 }}
-                                            />
-                                            {name}
-                                          </span>
-                                          {desc && (
-                                            <span className="text-[10px] text-slate-400">{desc}</span>
-                                          )}
-                                        </a>
+                                        {itemHref ? (
+                                          <Link
+                                            to={itemHref}
+                                            className="group flex items-center justify-between gap-3 rounded-lg px-2.5 py-1.5 text-[13px] text-slate-600 transition-colors hover:bg-slate-900/[0.035] hover:text-slate-900"
+                                          >
+                                            <span className="flex items-center gap-2.5">
+                                              <span
+                                                className="h-1 w-1 rounded-full transition-all duration-200 group-hover:h-1.5 group-hover:w-1.5"
+                                                style={{ background: BRAND, opacity: 0.35 }}
+                                              />
+                                              {name}
+                                            </span>
+                                            {desc && (
+                                              <span className="text-[10px] text-slate-400">{desc}</span>
+                                            )}
+                                          </Link>
+                                        ) : (
+                                          <button
+                                            type="button"
+                                            className="group flex w-full items-center justify-between gap-3 rounded-lg px-2.5 py-1.5 text-left text-[13px] text-slate-600 transition-colors hover:bg-slate-900/[0.035] hover:text-slate-900"
+                                          >
+                                            <span className="flex items-center gap-2.5">
+                                              <span
+                                                className="h-1 w-1 rounded-full transition-all duration-200 group-hover:h-1.5 group-hover:w-1.5"
+                                                style={{ background: BRAND, opacity: 0.35 }}
+                                              />
+                                              {name}
+                                            </span>
+                                            {desc && (
+                                              <span className="text-[10px] text-slate-400">{desc}</span>
+                                            )}
+                                          </button>
+                                        )}
                                       </motion.li>
                                     );
                                   })}
@@ -386,15 +418,19 @@ const Header = () => {
                                 {n.footer.title}
                               </h4>
                               <div className="grid grid-cols-4 gap-x-4 gap-y-1.5">
-                                {n.footer.items.map((it) => (
-                                  <a
-                                    key={it}
-                                    href="#"
-                                    className="text-[12px] text-slate-600 transition-colors hover:text-slate-900"
-                                  >
-                                    {it}
-                                  </a>
-                                ))}
+                                {n.footer.items.map((it) => {
+                                  const name = typeof it === 'string' ? it : it.name;
+                                  const href = typeof it === 'string' ? '#' : it.href;
+                                  return (
+                                    <Link
+                                      key={name}
+                                      to={href}
+                                      className="text-[12px] text-slate-600 transition-colors hover:text-slate-900"
+                                    >
+                                      {name}
+                                    </Link>
+                                  );
+                                })}
                               </div>
                             </div>
                           )}
@@ -421,18 +457,22 @@ const Header = () => {
                       )}
                     </AnimatePresence>
                   </div>
+                ) : (
+                  <Link
+                    key={n.id}
+                    to={n.href}
+                    className="relative rounded-lg px-3.5 py-2 text-[13.5px] font-medium text-slate-600 transition-colors hover:text-slate-900"
+                  >
+                    <span className="relative z-10">{n.label}</span>
+                    <span className="absolute inset-0 scale-90 rounded-lg bg-slate-900/[0.04] opacity-0 transition-all duration-200 hover:scale-100 hover:opacity-100" />
+                  </Link>
                 )
               )}
             </nav>
 
             
             <div className="flex items-center gap-2">
-              <a
-                href="#"
-                className="hidden rounded-full px-4 py-2 text-[13.5px] font-medium text-slate-600 transition-colors hover:text-slate-900 xl:block"
-              >
-                Sign in
-              </a>
+             
               <motion.button
                 whileHover={{ y: -1.5 }}
                 whileTap={{ scale: 0.97 }}
@@ -484,14 +524,14 @@ const Header = () => {
             >
               <div className="max-h-[calc(100vh-4rem)] space-y-0.5 overflow-y-auto px-4 py-4">
                 {NAV.map((n) =>
-                  n.href ? (
-                    <a
+                  !n.columns?.length && n.href ? (
+                    <Link
                       key={n.id}
-                      href={n.href}
+                      to={n.href}
                       className="block rounded-xl px-4 py-3 text-[14px] font-medium text-slate-700 transition-colors hover:bg-slate-900/[0.04]"
                     >
                       {n.label}
-                    </a>
+                    </Link>
                   ) : (
                     <div key={n.id}>
                       <button
@@ -535,15 +575,25 @@ const Header = () => {
                                   {col.items.map((it) => {
                                     const name = typeof it === 'string' ? it : it.name;
                                     const desc = typeof it === 'string' ? null : it.desc;
-                                    return (
-                                      <a
+                                    const itemHref = typeof it === 'string' ? null : it.href;
+                                    return itemHref ? (
+                                      <Link
                                         key={name}
-                                        href="#"
+                                        to={itemHref}
                                         className="flex items-center justify-between rounded-lg px-2 py-1.5 text-[13px] text-slate-600 transition-colors hover:bg-slate-900/[0.035] hover:text-slate-900"
                                       >
                                         <span>{name}</span>
                                         {desc && <span className="text-[10px] text-slate-400">{desc}</span>}
-                                      </a>
+                                      </Link>
+                                    ) : (
+                                      <button
+                                        key={name}
+                                        type="button"
+                                        className="flex w-full items-center justify-between rounded-lg px-2 py-1.5 text-left text-[13px] text-slate-600 transition-colors hover:bg-slate-900/[0.035] hover:text-slate-900"
+                                      >
+                                        <span>{name}</span>
+                                        {desc && <span className="text-[10px] text-slate-400">{desc}</span>}
+                                      </button>
                                     );
                                   })}
                                 </div>
@@ -554,12 +604,19 @@ const Header = () => {
                                   <p className="mb-1 px-2 text-[9.5px] font-bold uppercase tracking-[0.16em] text-slate-400">
                                     {n.footer.title}
                                   </p>
-                                  {n.footer.items.map((it) => (
-                                    <a key={it} href="#"
-                                      className="block rounded-lg px-2 py-1.5 text-[13px] text-slate-600 hover:bg-slate-900/[0.035] hover:text-slate-900">
-                                      {it}
-                                    </a>
-                                  ))}
+                                  {n.footer.items.map((it) => {
+                                    const name = typeof it === 'string' ? it : it.name;
+                                    const href = typeof it === 'string' ? '#' : it.href;
+                                    return (
+                                      <Link
+                                        key={name}
+                                        to={href}
+                                        className="block rounded-lg px-2 py-1.5 text-[13px] text-slate-600 hover:bg-slate-900/[0.035] hover:text-slate-900"
+                                      >
+                                        {name}
+                                      </Link>
+                                    );
+                                  })}
                                 </div>
                               )}
 
@@ -587,10 +644,7 @@ const Header = () => {
                 )}
 
                 <div className="flex items-center gap-2 pt-3">
-                  <a href="#"
-                    className="flex-1 rounded-full border border-slate-900/10 px-5 py-3 text-center text-[13.5px] font-semibold text-slate-700">
-                    Sign in
-                  </a>
+                 
                   <button
                     className="flex-1 rounded-full px-5 py-3 text-[13.5px] font-semibold text-white"
                     style={{
